@@ -44,7 +44,8 @@ typedef struct{
 
 void Desportistas(Deportista d);
 
-void calculaMedalla(Deportista m );
+
+void calculaMedalla(Deportista d,int NumDeportistas)
 
 int main()
 {
@@ -53,7 +54,7 @@ int main()
     char deporte[6][30] = {"Natación", "Atletismo", "Ciclismo", "Gimnasia", "Equitacion", "Esgrima"};
 
 
-Desportistas(deportistas);
+Desportistas(&deportistas);
 calculaMedalla(deportistas);
 
     return 0;
@@ -64,9 +65,11 @@ calculaMedalla(deportistas);
 void Desportistas(Deportista d)
 {
 
+
     FILE *archivo;
     char nombres;
     int cerrado;
+
     archivo = fopen("deportistas.txt","r"); //abriendo archivo
 
 
@@ -101,11 +104,16 @@ if(cerrado==EOF)
 
 
 
-void calculaMedalla(Deportista m )
+void calculaMedalla(Deportista d,int NumDeportistas)
 {
-
+    FILE *archivo;
      char nombres;
-    int cerrado;
+    int cerrado,suma=0;
+    float promedio;
+    string atletas;
+    string deporte;
+    strcpy(d.datos);
+
     archivo = fopen("deportistas.txt","r"); //abriendo archivo
 
 
@@ -115,21 +123,36 @@ void calculaMedalla(Deportista m )
 
     }
 
-    int i;
-    for(i=0;i<alumnos;i++)    //i=i+1
+    while(!feof(archivo))
     {
-        printf("Dime el nombre del Alumno %d: ",i+1);
-        scanf("%s",nombre);
-       printf("Calificacion: ");
-       scanf("%f",&calif[i]);
-       printf("\n");
-        fprintf(archivo,"alumno:%s  ",nombre);
-        fprintf(archivo,"calificacion: %f",calif[i]);
-        fprintf(archivo,"\n");
-
-
+        printf("atleta %s",d.datos);
+        printf("medallas %s",d.deporte);
+        printf("Medallas %d",d.numMedallas);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    int i;
+    for(i=0;i<NumDeportistas;i++)    //i=i+1
+    {
+
+    suma=suma+d.numMedallas;
+
+
+}
+promedio=suma/NumDeportistas;
+printf("El promedio es %.2f",promedio);
       cerrado = fclose(archivo);
 
 if(cerrado==EOF)
